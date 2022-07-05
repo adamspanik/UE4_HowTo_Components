@@ -29,6 +29,8 @@ public:
 	UPROPERTY() class UParticleSystemComponent* OurParticleSystem;
 	UPROPERTY() class UCollidingPawnMovementComponent* OurMovementComponent;
 
+	UPROPERTY() bool ParticlesEnabled = false;
+
 	virtual UPawnMovementComponent* GetMovementComponent() const override;
 
 	void MoveForward(float AxisValue);

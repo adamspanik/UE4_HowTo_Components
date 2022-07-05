@@ -53,6 +53,7 @@ ACollidingPawn::ACollidingPawn()
 
 	// Create a camera and attach to our spring arm
 	UCameraComponent* Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("ActualCamera"));
+	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 
 	// Take control of the default player
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
@@ -120,8 +121,14 @@ void ACollidingPawn::Turn(float AxisValue)
 
 void ACollidingPawn::ParticleToggle()
 {
-	if(OurParticleSystem && OurParticleSystem->Template)
+	if(ParticlesEnabled == false && OurParticleSystem && OurParticleSystem->Template)
 	{
+		ParticlesEnabled = true;
 		OurParticleSystem->Activate();
+	}
+	else
+	{
+		ParticlesEnabled = false;
+		OurParticleSystem->Deactivate();
 	}
 }
