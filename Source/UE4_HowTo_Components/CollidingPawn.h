@@ -26,6 +26,14 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY()
-		class UParticleSystemComponent* OurParticleSystem;
+	UPROPERTY() class UParticleSystemComponent* OurParticleSystem;
+	UPROPERTY() class UCollidingPawnMovementComponent* OurMovementComponent;
+
+	virtual UPawnMovementComponent* GetMovementComponent() const override;
+
+	void MoveForward(float AxisValue);
+	void MoveRight(float AxisValue);
+	void Turn(float AxisValue);
+	void ParticleToggle();
+	
 };
